@@ -7,9 +7,9 @@
     font-family: sans-serif;
     font-size: 20px;
     color: rgba(128,0,0,1); 
-  }
+   }
  
-  #h1{
+   #h1{
      font-family: serif;
     margin: 0 625;
     font-size: 50px;
@@ -17,7 +17,7 @@
     color: rgba(0,0,255,0.6);
    }
 
-  #date{
+   #date{
     position: absolute;
     top: calc(40% - 200px);
     right: calc(30% - 100px);
@@ -26,7 +26,7 @@
     font-weight: 400;
    }
     
-  #search {width: 125px;
+   #search {width: 125px;
     height: 35px;
     border: 1px solid #A56161;
     cursor: pointer;
@@ -47,9 +47,9 @@
     width: 500px;
     padding: 0px;
     z-index: 2;
-   }
+  }
 
-  #cla{
+  #heading{
     background-color: black;
    }
 
