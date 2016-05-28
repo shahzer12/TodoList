@@ -2,12 +2,18 @@ $(document).ready(function () {
   'use strict';
 
   var add_data_success = function (response) {
-      console.log(response);
-    },
+    if (!response.success) {
+      $('#alert').html(response.msg).show();
+    } else {
+      localStorage.setItem('token', response.token);
+      window.location.href = '/todo';
+    }
+  },
     add_data_error = function () {
       console.log('ERROR TRIGGERED');
     };
 
+  $('#alert').hide();
   $('#todo-register').validate({
     rules: {
       email: {
@@ -21,7 +27,7 @@ $(document).ready(function () {
     },
     messages: {
       email: {
-        required: 'Email field cant be empty',
+        required: 'Email field can\'t be empty',
         email: 'Insert correct email'
       },
       password: {
@@ -31,9 +37,11 @@ $(document).ready(function () {
     }
   });
 
-  $('#log').on('click', function (e) {
-    e.preventDefault();// Prevent normal buttomn action.
-
+  // before login check in browser local data whether token exist or not
+  if (localStorage.getItem('token')) {
+    window.location.href = '/todo';
+  }
+  $('#log').on('click', function () {
     $.ajax({
       url: '/login',
       type: 'POST',
