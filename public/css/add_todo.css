@@ -1,0 +1,36 @@
+<style>
+
+#form{
+	position: center;
+  }
+.navbar_lists{
+    font-size: 150%;
+    font-family: serif;
+  }
+#heading{
+    background-color: black;
+  }
+.form-horizontal{
+	margin-top:10%;
+	margin-left: 2%;
+    margin-right: 5%;
+  }
+
+.form-control{
+	width: 80%
+}
+#search {width: 125px;
+    height: 35px;
+    border: 1px solid #A56161;
+    cursor: pointer;
+    border-radius: 2px;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top:2%;
+    margin-left:38%;
+}
+
+
+</style>
