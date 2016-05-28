@@ -2,12 +2,18 @@ $(document).ready(function () {
   'use strict';
 
   var add_data_success = function (response) {
-      console.log(response);
-    },
+    if (!response.success) {
+      $('#dyn').html(response.msg).show();
+    } else {
+      localStorage.setItem('token', response.token);
+      window.location.href = '/abc';
+    }
+  },
     add_data_error = function () {
       console.log('ERROR TRIGGERED');
     };
 
+  $('#dyn').hide();
   $('#todo-register').validate({
     rules: {
       email: {
@@ -31,9 +37,11 @@ $(document).ready(function () {
     }
   });
 
-  $('#log').on('click', function (e) {
-    e.preventDefault();// Prevent normal buttomn action.
-
+  // before login check in browser local data whether token exist or not
+  if (localStorage.getItem('token')) {
+    window.location.href = '/abc';
+  }
+  $('#log').on('click', function () {
     $.ajax({
       url: '/login',
       type: 'POST',
