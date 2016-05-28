@@ -7,9 +7,6 @@ var knex = require('knex')({
   database: 'todo'}
 });
 
-/*knex.select('*').from('table1');
-knex('table1').insert({id: 1,name:'Shahzer'});*/
-
 exports.adduser = function (data, cb) {
   'use strict';
 
@@ -58,7 +55,6 @@ exports.searchtodo = function (data, cb) {
   'use strict';
 
   knex.select().table('todo').where({user_id: data})
-
    .then(function (ret) {
      cb(ret);
    })

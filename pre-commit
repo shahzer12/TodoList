@@ -37,8 +37,7 @@ is_installed_node() {
 
 check_prerequisites()
 {
-  #is_installed node jscs jshint mocha istanbul
-  #is_installed_node ansi-regex
+  is_installed node jscs jshint
 
   #jscs version
   JSCS_CURRENT=$(jscs  --version 2>&1)

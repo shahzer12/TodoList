@@ -1,8 +1,6 @@
 var express = require('express'),
   app = express(),
   router = express.Router(),
-
-  // _= require('lodash'),
   path = require('path'),
   data = require('../model/user'),
   jwt = require('jsonwebtoken');
@@ -37,7 +35,7 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.get('/abc', function (req, res) {
+router.get('/todo', function (req, res) {
   'use strict';
 
   res.sendFile(path.join(__dirname + '/../views/todo.html'));

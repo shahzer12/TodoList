@@ -11,8 +11,8 @@ $(document).ready(function () {
     }
   },
   add_data_error = function () {
-      console.log('ERROR TRIGGERED');
-    };
+    console.log('ERROR TRIGGERED');
+  };
 
   obj = {token: localStorage.getItem('token')};
 

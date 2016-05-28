@@ -3,17 +3,17 @@ $(document).ready(function () {
 
   var add_data_success = function (response) {
     if (!response.success) {
-      $('#dyn').html(response.msg).show();
+      $('#alert').html(response.msg).show();
     } else {
       localStorage.setItem('token', response.token);
-      window.location.href = '/abc';
+      window.location.href = '/todo';
     }
   },
     add_data_error = function () {
       console.log('ERROR TRIGGERED');
     };
 
-  $('#dyn').hide();
+  $('#alert').hide();
   $('#todo-register').validate({
     rules: {
       email: {
@@ -27,7 +27,7 @@ $(document).ready(function () {
     },
     messages: {
       email: {
-        required: 'Email field cant be empty',
+        required: 'Email field can\'t be empty',
         email: 'Insert correct email'
       },
       password: {
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
   // before login check in browser local data whether token exist or not
   if (localStorage.getItem('token')) {
-    window.location.href = '/abc';
+    window.location.href = '/todo';
   }
   $('#log').on('click', function () {
     $.ajax({
