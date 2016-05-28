@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TODO</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="add_todo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="add_todo.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+
+  </head>
+  <body>
+    <nav  class="navbar navbar-default">
+      <div  id ='heading' class="container-fluid">
+        <div  class="navbar-header">
+          <a   class="navbar-brand" href="#"><span class='navbar_lists'>TODO</span></a>
+        </div>
+       </div>
+    </nav>
+    <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
+      <div class="form-group">
+         <label for="time" class="col">TIME :</label>
+          <input type="time" name="time" class="form-control" id="time" >
+       </div>
+       <div class="form-group">
+         <label for="datepicker" class="col">DATE :</label>
+         <input type="text" name="date" class="form-control" id="datepicker" placeholder="Enter the date">
+       </div>
+       <div class="form-group">
+         <label class="col">EVENT :</label>
+         <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
+       </div>
+       <div class="form-group">
+         <label for="address" class="col">ADDRESS :</label>
+         <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
+       </div>
+       <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
+     </form>
+   </body>
+</html>
