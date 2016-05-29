@@ -11,12 +11,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js">
-  </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js">
+    </script>
     <script type='text/javascript' src='js/todo.js'></script>
     <script type="text/javascript" src="js/add_todo.js"></script>
-
   </head>
+
   <body>
     <nav  class="navbar navbar-default">
       <div  id ='heading' class="container-fluid">
@@ -25,7 +25,6 @@
         </div>
        </div>
     </nav>
-   
     <div class='bs-example'>
       <div class='panel-group' id='accordion'>
         <div class='panel panel-default'>
@@ -68,21 +67,19 @@
      </div>
      <p id='date'>Date : <input type='text' id='datepicker'></p>
      <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#myModal">ADD</button>
-
-       <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog">
+     <div class="modal fade" id="myModal" role="dialog">
+       <div class="modal-dialog">
       <!-- Modal content-->
-           <div class="modal-content">
-             <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Add your todo </h4>
-             </div>
-             <div class="modal-body">
-               
+         <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add your todo </h4>
+            </div>
+            <div class="modal-body">
                <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
                  <div class="form-group">
                    <label for="time" class="col">TIME :</label>
-                     <input type="time" name="time" class="form-control" id="time" >
+                   <input type="time" name="time" class="form-control" id="time" >
                  </div>
                  <div class="form-group">
                    <label for="datepicker" class="col">DATE :</label>
@@ -98,14 +95,13 @@
                  </div>
                  <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
                </form>
-             </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             </div>
-           </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
          </div>
        </div>
-
-      
    </body>
-</html>                                		                                		
+
+</html>
