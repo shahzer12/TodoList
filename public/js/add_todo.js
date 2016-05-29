@@ -7,10 +7,12 @@ $(document).ready(function () {
     add_todo_success = function (response) {
       if (response.success) {
         window.location.href = '/todo';
+      } else {
+        alert('something wrong happened');
       }
     };
 
-  $('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+  $('#date-picker').datepicker({dateFormat: 'yy-mm-dd'});
 
   $('#add-todo').validate({
     rules: {
@@ -43,7 +45,7 @@ $(document).ready(function () {
     }
   });
 
-  $('#sub').click(function () {
+  $('#submit').click(function () {
     var obj, token;
 
     obj = $('#add-todo').serialize();
