@@ -1,18 +1,16 @@
 $(document).ready(function () {
   'use strict';
-  
-  var add_todo_error = function (){
-      console.log("ERROR TRIGGERED");
-     },
-     add_todo_success = function (response){
-       if (response.success) {
-         window.location.href = '/todo';
-       }
-     };
 
-  $(function () {
-    $('#datepicker').datepicker({ dateFormat : 'yy-mm-dd'});
-  });
+  var add_todo_error = function () {
+      console.log('ERROR TRIGGERED');
+    },
+    add_todo_success = function (response) {
+      if (response.success) {
+        window.location.href = '/todo';
+      }
+    };
+
+  $('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
   $('#add-todo').validate({
     rules: {
@@ -43,9 +41,9 @@ $(document).ready(function () {
         required: '*Please enter the address'
       }
     }
- });
+  });
 
-  $('#sub').click( function() {
+  $('#sub').click(function () {
     var obj, token;
 
     obj = $('#add-todo').serialize();
@@ -53,11 +51,11 @@ $(document).ready(function () {
     obj = obj + '&token=' + token;
 
     $.ajax({
-      url: '/add-todo' ,
+      url: '/add-todo',
       data: obj,
       type: 'POST',
       success: add_todo_success,
       error: add_todo_error
-     });
+    });
   });
 });

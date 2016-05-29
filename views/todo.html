@@ -7,20 +7,24 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css'>
     <link rel='stylesheet' href='https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css'>
     <link rel='stylesheet' type='text/css' href ='css/todo.css'>
-    <script src='https://code.jquery.com/jquery-1.10.2.js'></script>
+    <link rel="stylesheet" type="text/css" href="css/add_todo.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js">
+    </script>
     <script type='text/javascript' src='js/todo.js'></script>
+    <script type="text/javascript" src="js/add_todo.js"></script>
   </head>
-  <body>
-    <nav class='navbar navbar-default'>
-      <div  id ='heading' class='container-fluid'>
-        <div  class='navbar-header'>
-          <a class='navbar-brand' href='#'> <span class='navbar_lists'>TODO</span> </a>
-        </div>
-      </div>
-     </nav>
 
+  <body>
+    <nav  class="navbar navbar-default">
+      <div  id ='heading' class="container-fluid">
+        <div  class="navbar-header">
+          <a   class="navbar-brand" href="#"><span class='navbar_lists'>TODO</span></a>
+        </div>
+       </div>
+    </nav>
     <div class='bs-example'>
       <div class='panel-group' id='accordion'>
         <div class='panel panel-default'>
@@ -61,8 +65,44 @@
           </div>
        </div>
      </div>
-     <div class='body'></div>
-       <button id = 'search' type='button' class='btn btn-primary' > <a href ='/insert-todo'>ADD</a> </button>
-       <p id='date'>Date : <input type='text' id='datepicker'></p>
+     <p id='date'>Date : <input type='text' id='datepicker'></p>
+     <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
+     <div class="modal fade" id="add-todo-modal" role="dialog">
+       <div class="modal-dialog">
+      <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add your todo </h4>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
+                 <div class="form-group">
+                   <label for="time" class="col">TIME :</label>
+                   <input type="time" name="time" class="form-control" id="time" >
+                 </div>
+                 <div class="form-group">
+                   <label for="datepicker" class="col">DATE :</label>
+                   <input type="text" name="date" class="form-control" id="date-picker" placeholder="Enter the date">
+                 </div>
+                 <div class="form-group">
+                   <label class="col">EVENT :</label>
+                   <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
+                 </div>
+                 <div class="form-group">
+                   <label for="address" class="col">ADDRESS :</label>
+                   <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
+                 </div>
+                 <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
+               </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+         </div>
+       </div>
+>>>>>>> 4cc4dc77be6a3d64050aaab8aed4f1dd74c4f136
    </body>
-</html>                                		                                		
+
+</html>
