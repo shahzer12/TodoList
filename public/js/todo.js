@@ -26,7 +26,9 @@ $(document).ready(function () {
   });
 
   $(function () {
-    $('#datepicker').datepicker();
+    $('#datepicker').datepicker({
+      dateFormat: 'yy-mm-dd'
+    }).datepicker('setDate', 'today');
   });
 
   $(function () {

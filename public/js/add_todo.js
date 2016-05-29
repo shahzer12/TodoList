@@ -2,7 +2,7 @@ $(document).ready(function () {
   'use strict';
 
   $(function () {
-    $('#datepicker').datepicker();
+    $('#date-picker').datepicker();
   });
 
   $('#add-todo').validate({
