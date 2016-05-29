@@ -16,6 +16,7 @@
   "homepage": "https://bitbucket.org/abhishek_tripathi/todo_training#readme",
   "dependencies": {
     "ansi-regex": "^2.0.0",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mysql": "~2.10.2"
   }
 }

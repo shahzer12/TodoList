@@ -38,7 +38,10 @@
     margin-top: 450px;
     margin-left: 425px;
    }
-
+    
+   .btn btn-primary{
+    margin-right: 20%;
+   }
   .bs-example{
     position: absolute;
     top: calc(40% - 100px);
@@ -53,9 +56,18 @@
     background-color: black;
    }
 
+   #text{
+     font-family: "Times New Roman", Times, serif;
+  }
+   
+
   .navbar_lists{
     font-size: 150%;
     font-family: serif;   
+   }
+   #logout{
+    margin-left: 85%;
+    color:#c8f0c8;
    }
 
 </style>

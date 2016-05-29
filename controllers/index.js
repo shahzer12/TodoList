@@ -45,6 +45,7 @@ router.post('/fetch', function (req, res) {
   'use strict';
 
   var token = req.body.token,
+    obj,
     userid,
     res_obj = {
       success: false,
@@ -59,7 +60,9 @@ router.post('/fetch', function (req, res) {
         // if everything is good, save to request for use in other routes
         res_obj.success = true;
         userid = decoded.userid;
-        data.searchtodo(userid, function (response, error) {
+        obj = {userid: userid,
+              date: req.body.date};
+        data.searchtodo(obj, function (response, error) {
           if (!error) {
             res_obj.data = response;
             res.send(res_obj);

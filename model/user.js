@@ -54,8 +54,11 @@ exports.addtodo = function (data, cb) {
 exports.searchtodo = function (data, cb) {
   'use strict';
 
-  knex.select().table('todo').where({user_id: data})
-   .then(function (ret) {
+  knex.select().table('todo').where({
+    user_id: data.userid,
+    date: data.date
+  })
+ .then(function (ret) {
      cb(ret);
    })
    .catch(function (error) {
