@@ -1,10 +1,117 @@
 var express = require('express'),
-  router = express.Router();
+  app = express(),
+  router = express.Router(),
+  path = require('path'),
+  user= require('../model/user'),
+  jwt = require('jsonwebtoken'),
+    _  =require('lodash');
 
-router.post('/login', function (req) {
+app.set('superSecret', 'abcdef');
+router.post('/login', function (req, res) {
   'use strict';
 
-  console.log(req.body);
+  var obj = req.body,
+    res_obj = {
+      success: false,
+      msg: ''
+    },
+    token;
+
+  user.select(obj, function (response, err) {
+    if (err) {
+      res_obj.msg = 'something error occured';
+      res.send(res_obj);
+    } else if (response.length === 0) {
+      res_obj.msg = 'user name doesnt exist';
+      res.send(res_obj);
+    } else {
+      res_obj.success = true;
+      token = jwt.sign({user_id: response[0].id}, app.get('superSecret'),
+      {
+        expiresIn: 1440
+      });
+      res_obj.token = token;
+      res.send(res_obj);
+    }
+  });
 });
+
+router.get('/todo', function (req, res) {
+  'use strict';
+
+  res.sendFile(path.join(__dirname + '/../views/collapse.html'));
+});
+
+router.post('/fetch', function (req, res) {
+  'use strict';
+
+  var token = req.body.token,
+    user_id,
+    res_obj = {
+      success: false,
+      msg: ''
+    };
+
+  if (token) {
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        res.send(res_obj);
+      } else {
+        // if everything is good, save to request for use in other routes
+        res_obj.success = true;
+        user_id = decoded.user_id;
+        user.searchtodo(user_id, function (response, error) {
+          if (!error) {
+            res_obj.data = response;
+            res.send(res_obj);
+          }
+        });
+      }
+    });
+  } else {
+    /* if there is no token
+    return an error*/
+    res.send(res_obj);
+  }
+});
+
+ router.get('/insert-todo', function (req, res) {
+  'use strict';
+
+  res.sendFile(path.join(__dirname + '/../views/add_todo.html'));
+});
+
+
+ router.post('/add-todo', function (req , res) {
+  'use strict'; 
+  var req_data = req.body,
+    token = req.body.token,
+    res_obj = {
+      success: false,
+      msg: ''
+    };
+  
+   if (token) {
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        res.send(res_obj);
+        }
+      else {
+        res_obj.success = true;
+        req_data.user_id = decoded.user_id;
+        user.addtodo(req_data, function (response, error) {
+          if (!error) {
+            res_obj.data = response;
+            res.send(res_obj);
+          }
+        });
+      }
+    });
+  }
+  else {
+    res.send(res_obj);
+  }
+});
+
 
 module.exports = router;
