@@ -32,44 +32,41 @@
       <div class='panel-group' id='accordion'></div>
     </div>
     <div class='body'></div>
- </div>
-     <p id='date'>Date : <input type='text' id='datepicker'></p>
-     <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
-     <div class="modal fade" id="add-todo-modal" role="dialog">
-       <div class="modal-dialog">
+    <p id='date'>Date : <input type='text' id='datepicker'></p>
+    <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
+    <div class="modal fade" id="add-todo-modal" role="dialog">
+      <div class="modal-dialog">
       <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add your todo </h4>
-            </div>
-            <div class="modal-body">
-               <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
-                 <div class="form-group">
-                   <label for="time" class="col">TIME :</label>
-                   <input type="time" name="time" class="form-control" id="time" >
-                 </div>
-                 <div class="form-group">
-                   <label for="datepicker" class="col">DATE :</label>
-                   <input type="text" name="date" class="form-control" id="date-picker" placeholder="Enter the date">
-                 </div>
-                 <div class="form-group">
-                   <label class="col">EVENT :</label>
-                   <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
-                 </div>
-                 <div class="form-group">
-                   <label for="address" class="col">ADDRESS :</label>
-                   <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
-                 </div>
-                 <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
-               </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add your todo </h4>
           </div>
-         </div>
-       </div>
-   </body>
-
+          <div class="modal-body">
+            <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
+              <div class="form-group">
+                <label for="time" class="col">TIME :</label>
+                <input type="time" name="time" class="form-control" id="time" >
+              </div>
+              <div class="form-group">
+                <label for="datepicker" class="col">DATE :</label>
+                <input type="text" name="date" class="form-control" id="date-picker" placeholder="Enter the date">
+              </div>
+              <div class="form-group">
+                <label class="col">EVENT :</label>
+                <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
+              </div>
+              <div class="form-group">
+                <label for="address" class="col">ADDRESS :</label>
+                <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
+              </div>
+              <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
+            </form>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

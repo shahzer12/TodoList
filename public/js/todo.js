@@ -1,20 +1,20 @@
 $(document).ready(function () {
   'use strict';
 
-  var j, obj, curr_date, fetchData, append_collapse_html,
+  var j, obj, curr_date, fetchData, append_collapse_html, todo_obj,
     add_data_success = function (response) {
       if (!response.success) {
         localStorage.removeItem('token');
         window.location.href = '/';
       } else {
-        obj = response.data;
-        if (obj.length === 0) {
+        todo_obj = response.data;
+        if (todo_obj.length === 0) {
           $('#accordion').html('<div class="alert alert-danger"' +
             'role="alert"> <h3 id="text">Todo' +
             ' for this date is not available. Please click add button' +
             'to create yout todo</h3></div>');
         }
-        for (j = 0; j < obj.length; j++) {
+        for (j = 0; j < todo_obj.length; j++) {
           append_collapse_html = '<div class="panel panel-default">' +
             '<div class="panel-heading">' +
                '<h4 class="panel-title">' +
@@ -24,12 +24,12 @@ $(document).ready(function () {
             '</div>' +
             '<div id="collapse' + j + '" class="panel-collapse collapse">' +
               '<div class="panel-body">' +
-                '<p>  Date ' + obj[j].date + '</p>' +
-                '<p>  Time ' + obj[j].time + '</p>' +
-                '<p>  Location ' + obj[j].location + '</p>' +
-                '<p>  Event ' + obj[j].event + '</p>' +
-                '<p>  Email ' + obj[j].email + '</p>' +
-                '<p>  User_id ' + obj[j].user_id + '</p>' +
+                '<p>  Date ' + todo_obj[j].date + '</p>' +
+                '<p>  Time ' + todo_obj[j].time + '</p>' +
+                '<p>  Location ' + todo_obj[j].location + '</p>' +
+                '<p>  Event ' + todo_obj[j].event + '</p>' +
+                '<p>  Email ' + todo_obj[j].email + '</p>' +
+                '<p>  User_id ' + todo_obj[j].user_id + '</p>' +
                '</div>' +
             '</div>' +
             '</div>';

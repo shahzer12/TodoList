@@ -45,12 +45,11 @@ router.post('/fetch', function (req, res) {
   'use strict';
 
   var token = req.body.token,
-    obj,
-    userid,
     res_obj = {
-      success: true,
+      success: false,
       msg: ''
-    };
+    },
+    userid;
 
   if (token) {
     jwt.verify(token, app.get('superSecret'), function (err, decoded) {
@@ -60,9 +59,9 @@ router.post('/fetch', function (req, res) {
         // if everything is good, save to request for use in other routes
         res_obj.success = true;
         userid = decoded.userid;
-        obj = {userid: userid,
-              date: req.body.date};
-        data.searchtodo(obj, function (response, error) {
+        data.searchtodo({userid: userid,
+          date: req.body.date},
+          function (response, error) {
           if (!error) {
             res_obj.data = response;
             res.send(res_obj);
