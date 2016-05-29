@@ -2,9 +2,8 @@ var express = require('express'),
   app = express(),
   router = express.Router(),
   path = require('path'),
-  user= require('../model/user'),
-  jwt = require('jsonwebtoken'),
-    _  =require('lodash');
+  user = require('../model/user'),
+  jwt = require('jsonwebtoken');
 
 app.set('superSecret', 'abcdef');
 router.post('/login', function (req, res) {
@@ -39,7 +38,7 @@ router.post('/login', function (req, res) {
 router.get('/todo', function (req, res) {
   'use strict';
 
-  res.sendFile(path.join(__dirname + '/../views/collapse.html'));
+  res.sendFile(path.join(__dirname + '/../views/todo.html'));
 });
 
 router.post('/fetch', function (req, res) {
@@ -69,34 +68,32 @@ router.post('/fetch', function (req, res) {
       }
     });
   } else {
-    /* if there is no token
-    return an error*/
+    /* if there is no token return an error*/
     res.send(res_obj);
   }
 });
 
- router.get('/insert-todo', function (req, res) {
+router.get('/insert-todo', function (req, res) {
   'use strict';
 
   res.sendFile(path.join(__dirname + '/../views/add_todo.html'));
 });
 
+router.post('/add-todo', function (req, res) {
+  'use strict';
 
- router.post('/add-todo', function (req , res) {
-  'use strict'; 
   var req_data = req.body,
     token = req.body.token,
     res_obj = {
       success: false,
       msg: ''
     };
-  
-   if (token) {
+
+  if (token) {
     jwt.verify(token, app.get('superSecret'), function (err, decoded) {
       if (err) {
         res.send(res_obj);
-        }
-      else {
+      } else {
         res_obj.success = true;
         req_data.user_id = decoded.user_id;
         user.addtodo(req_data, function (response, error) {
@@ -107,11 +104,9 @@ router.post('/fetch', function (req, res) {
         });
       }
     });
-  }
-  else {
+  } else {
     res.send(res_obj);
   }
 });
-
 
 module.exports = router;
