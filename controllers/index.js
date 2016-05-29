@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   router = express.Router(),
   path = require('path'),
-  data = require('../model/user'),
+  user = require('../model/user'),
   jwt = require('jsonwebtoken');
 
 app.set('superSecret', 'abcdef');
@@ -16,7 +16,7 @@ router.post('/login', function (req, res) {
     },
     token;
 
-  data.select(obj, function (response, err) {
+  user.select(obj, function (response, err) {
     if (err) {
       res_obj.msg = 'something error occured';
       res.send(res_obj);
@@ -25,7 +25,7 @@ router.post('/login', function (req, res) {
       res.send(res_obj);
     } else {
       res_obj.success = true;
-      token = jwt.sign({userid: response[0].id}, app.get('superSecret'),
+      token = jwt.sign({user_id: response[0].id}, app.get('superSecret'),
       {
         expiresIn: 1440
       });
@@ -45,7 +45,7 @@ router.post('/fetch', function (req, res) {
   'use strict';
 
   var token = req.body.token,
-    userid,
+    user_id,
     res_obj = {
       success: false,
       msg: ''
@@ -58,8 +58,8 @@ router.post('/fetch', function (req, res) {
       } else {
         // if everything is good, save to request for use in other routes
         res_obj.success = true;
-        userid = decoded.userid;
-        data.searchtodo(userid, function (response, error) {
+        user_id = decoded.user_id;
+        user.searchtodo(user_id, function (response, error) {
           if (!error) {
             res_obj.data = response;
             res.send(res_obj);
@@ -68,8 +68,43 @@ router.post('/fetch', function (req, res) {
       }
     });
   } else {
-    /* if there is no token
-    return an error*/
+    /* if there is no token return an error*/
+    res.send(res_obj);
+  }
+});
+
+router.get('/insert-todo', function (req, res) {
+  'use strict';
+
+  res.sendFile(path.join(__dirname + '/../views/add_todo.html'));
+});
+
+router.post('/add-todo', function (req, res) {
+  'use strict';
+
+  var req_data = req.body,
+    token = req.body.token,
+    res_obj = {
+      success: false,
+      msg: ''
+    };
+
+  if (token) {
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        res.send(res_obj);
+      } else {
+        res_obj.success = true;
+        req_data.user_id = decoded.user_id;
+        user.addtodo(req_data, function (response, error) {
+          if (!error) {
+            res_obj.data = response;
+            res.send(res_obj);
+          }
+        });
+      }
+    });
+  } else {
     res.send(res_obj);
   }
 });

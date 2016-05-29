@@ -1,9 +1,18 @@
 $(document).ready(function () {
   'use strict';
 
-  $(function () {
-    $('#date-picker').datepicker();
-  });
+  var add_todo_error = function () {
+      console.log('ERROR TRIGGERED');
+    },
+    add_todo_success = function (response) {
+      if (response.success) {
+        window.location.href = '/todo';
+      } else {
+        alert('something wrong happened');
+      }
+    };
+
+  $('#date-picker').datepicker({dateFormat: 'yy-mm-dd'});
 
   $('#add-todo').validate({
     rules: {
@@ -34,5 +43,21 @@ $(document).ready(function () {
         required: '*Please enter the address'
       }
     }
+  });
+
+  $('#submit').click(function () {
+    var obj, token;
+
+    obj = $('#add-todo').serialize();
+    token = localStorage.getItem('token');
+    obj = obj + '&token=' + token;
+
+    $.ajax({
+      url: '/add-todo',
+      data: obj,
+      type: 'POST',
+      success: add_todo_success,
+      error: add_todo_error
+    });
   });
 });

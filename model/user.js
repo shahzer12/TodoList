@@ -3,7 +3,7 @@ var knex = require('knex')({
   connection: {
   host: '127.0.0.1',
   user: 'root',
-  password: 'hello',
+  password: 'mauritius',
   database: 'todo'}
 });
 
@@ -38,10 +38,13 @@ exports.select = function (data, cb) {
 exports.addtodo = function (data, cb) {
   'use strict';
 
-  knex('todo').insert({email: data.email,
-  date: data.date,
-  location: data.location,
-  time: data.time
+  knex('todo').insert({
+    date: data.date,
+    location: data.address,
+    time: data.time,
+    event: data.events,
+    user_id: data.user_id
+
   })
   .then(function (ret) {
     cb(ret);
