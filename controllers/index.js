@@ -41,6 +41,36 @@ router.get('/todo', function (req, res) {
   res.sendFile(path.join(__dirname + '/../views/todo.html'));
 });
 
+router.post('/add-todo', function (req, res) {
+  'use strict';
+
+  var req_data = req.body,
+    token = req.body.token,
+    res_obj = {
+      success: false,
+      msg: ''
+    };
+
+  if (token) {
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        res.send(res_obj);
+      } else {
+        res_obj.success = true;
+        req_data.user_id = decoded.userid;
+        data.addtodo(req_data, function (response, error) {
+          if (!error) {
+            res_obj.data = response;
+            res.send(res_obj);
+          }
+        });
+      }
+    });
+  } else {
+    res.send(res_obj);
+  }
+});
+
 router.post('/fetch', function (req, res) {
   'use strict';
 

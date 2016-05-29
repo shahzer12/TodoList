@@ -17,6 +17,8 @@
   "dependencies": {
     "ansi-regex": "^2.0.0",
     "express": "^4.13.4",
-    "mysql": "~2.10.2"
+    "knex": "^0.11.5",
+    "lodash": "^4.13.1",
+    "mysql": "^2.10.2"
   }
 }

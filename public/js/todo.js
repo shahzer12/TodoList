@@ -28,7 +28,6 @@ $(document).ready(function () {
                 '<p>  Time ' + todo_obj[j].time + '</p>' +
                 '<p>  Location ' + todo_obj[j].location + '</p>' +
                 '<p>  Event ' + todo_obj[j].event + '</p>' +
-                '<p>  Email ' + todo_obj[j].email + '</p>' +
                 '<p>  User_id ' + todo_obj[j].user_id + '</p>' +
                '</div>' +
             '</div>' +
@@ -63,7 +62,7 @@ $(document).ready(function () {
 
   $(function () {
     $('#datepicker').datepicker({dateFormat: 'yy-mm-dd'})
-      .datepicker('setDate', '2016-05-28');
+      .datepicker('setDate', 'today');
     curr_date = $('#datepicker').val();
     fetchData({date: curr_date});
   });
