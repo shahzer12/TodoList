@@ -48,7 +48,7 @@ router.post('/fetch', function (req, res) {
     obj,
     userid,
     res_obj = {
-      success: false,
+      success: true,
       msg: ''
     };
 

@@ -11,7 +11,7 @@ $(document).ready(function () {
         if (obj.length === 0) {
           $('#accordion').html('<div class="alert alert-danger"' +
             'role="alert"> <h3 id="text">Todo' +
-            'for this date is not available. Please click add button' +
+            ' for this date is not available. Please click add button' +
             'to create yout todo</h3></div>');
         }
         for (j = 0; j < obj.length; j++) {
@@ -41,13 +41,11 @@ $(document).ready(function () {
       console.log('ERROR TRIGGERED');
     };
 
-  obj = {
-    token: localStorage.getItem('token')
-  };
-
   fetchData = function (extra_data) {
+    obj = {
+      token: localStorage.getItem('token')
+    };
     _.extend(obj, extra_data);
-    console.log(obj);
     $.ajax({
       type: 'POST',
       data: obj,
@@ -65,7 +63,7 @@ $(document).ready(function () {
 
   $(function () {
     $('#datepicker').datepicker({dateFormat: 'yy-mm-dd'})
-      .datepicker('setDate', 'today');
+      .datepicker('setDate', '2016-05-28');
     curr_date = $('#datepicker').val();
     fetchData({date: curr_date});
   });
@@ -75,7 +73,7 @@ $(document).ready(function () {
   });
 
   $('#datepicker').change(function () {
-    curr_date = $(this).val();
+    curr_date = $('#datepicker').val();
     $('#accordion').html('');
     fetchData({date: curr_date});
   });
