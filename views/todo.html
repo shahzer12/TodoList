@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+    <script src='http://underscorejs.org/underscore-min.js'></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js">
     </script>
     <script type='text/javascript' src='js/todo.js'></script>
@@ -18,90 +19,53 @@
   </head>
 
   <body>
-    <nav  class="navbar navbar-default">
-      <div  id ='heading' class="container-fluid">
-        <div  class="navbar-header">
-          <a   class="navbar-brand" href="#"><span class='navbar_lists'>TODO</span></a>
+    <nav class='navbar navbar-default'>
+      <div id ='heading' class='container-fluid'>
+        <div class='navbar-header'>
+          <a class='navbar-brand' href='#'> <span class='navbar_lists'>TODO</span> </a>
         </div>
-       </div>
-    </nav>
+      </div>
+     </nav>
+    <button type="button" id="logout" class="btn btn-primary">Log Out</button>
     <div class='bs-example'>
-      <div class='panel-group' id='accordion'>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>
-                <h4 class='panel-title'>
-                    <a data-toggle='collapse' data-parent='#accordion' href='#collapseOne'> 1.VERY FIRST JOB</a>
-                </h4>
-            </div>
-            <div id='collapseOne' class='panel-collapse collapse in'>
-                <div class='panel-body'>
-                    <p>HTML stands for HyperText Markup Language. HTML is the main markup language </p>
-                </div>
-            </div>
-        </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>
-                <h4 class='panel-title'>
-                    <a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'>2. SECOND JOB</a>
-                </h4>
-            </div>
-            <div id='collapseTwo' class='panel-collapse collapse'>
-                <div class='panel-body'>
-                    <p>Bootstrap is a powerful front-end framework for faster and easier web development.  </p>
-                </div>
-            </div>
-        </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>
-                <h4 class='panel-title'>
-                    <a data-toggle='collapse' data-parent='#accordion' href='#collapseThree'>3. LAST JOB</a>
-                </h4>
-            </div>
-            <div id='collapseThree' class='panel-collapse collapse'>
-                <div class='panel-body'>
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties </p>
-                </div>
-            </div>
-          </div>
-       </div>
-     </div>
-     <p id='date'>Date : <input type='text' id='datepicker'></p>
-     <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
-     <div class="modal fade" id="add-todo-modal" role="dialog">
-       <div class="modal-dialog">
+      <div class='panel-group' id='accordion'></div>
+    </div>
+    <div class='body'></div>
+    <p id='date'>Date : <input type='text' id='datepicker'></p>
+    <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
+    <div class="modal fade" id="add-todo-modal" role="dialog">
+      <div class="modal-dialog">
       <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Add your todo </h4>
-            </div>
-            <div class="modal-body">
-               <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
-                 <div class="form-group">
-                   <label for="time" class="col">TIME :</label>
-                   <input type="text" name="time" class="form-control" id="time" >
-                 </div>
-                 <div class="form-group">
-                   <label for="datepicker" class="col">DATE :</label>
-                   <input type="text" name="date" class="form-control" id="date-picker" placeholder="Enter the date">
-                 </div>
-                 <div class="form-group">
-                   <label class="col">EVENT :</label>
-                   <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
-                 </div>
-                 <div class="form-group">
-                   <label for="address" class="col">ADDRESS :</label>
-                   <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
-                 </div>
-                 <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
-               </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add your todo </h4>
           </div>
-         </div>
-       </div>
-   </body>
-
+          <div class="modal-body">
+            <form class="form-horizontal" name="form" id="add-todo" autocomplete="on">
+              <div class="form-group">
+                <label for="time" class="col">TIME :</label>
+                <input type="text" name="time" class="form-control" id="time" >
+              </div>
+              <div class="form-group">
+                <label for="datepicker" class="col">DATE :</label>
+                <input type="text" name="date" class="form-control" id="date-picker" placeholder="Enter the date">
+              </div>
+              <div class="form-group">
+                <label class="col">EVENT :</label>
+                <input type="text" name="events" class="form-control" id="events" placeholder="Enter your event ">
+              </div>
+              <div class="form-group">
+                <label for="address" class="col">ADDRESS :</label>
+                <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
+              </div>
+              <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
+            </form>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

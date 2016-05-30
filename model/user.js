@@ -3,7 +3,7 @@ var knex = require('knex')({
   connection: {
   host: '127.0.0.1',
   user: 'root',
-  password: 'mauritius',
+  password: 'hello',
   database: 'todo'}
 });
 
@@ -57,11 +57,14 @@ exports.addtodo = function (data, cb) {
 exports.searchtodo = function (data, cb) {
   'use strict';
 
-  knex.select().table('todo').where({user_id: data})
-   .then(function (ret) {
-     cb(ret);
-   })
-   .catch(function (error) {
-     cb(error);
-   });
+  knex.select().table('todo').where({
+    user_id: data.userid,
+    date: data.date
+  })
+  .then(function (ret) {
+    cb(ret);
+  })
+  .catch(function (error) {
+    cb(error);
+  });
 };

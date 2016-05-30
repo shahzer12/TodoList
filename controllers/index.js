@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   router = express.Router(),
   path = require('path'),
-  user = require('../model/user'),
+  data = require('../model/user'),
   jwt = require('jsonwebtoken');
 
 app.set('superSecret', 'abcdef');
@@ -16,7 +16,7 @@ router.post('/login', function (req, res) {
     },
     token;
 
-  user.select(obj, function (response, err) {
+  data.select(obj, function (response, err) {
     if (err) {
       res_obj.msg = 'something error occured';
       res.send(res_obj);
@@ -25,7 +25,7 @@ router.post('/login', function (req, res) {
       res.send(res_obj);
     } else {
       res_obj.success = true;
-      token = jwt.sign({user_id: response[0].id}, app.get('superSecret'),
+      token = jwt.sign({userid: response[0].id}, app.get('superSecret'),
       {
         expiresIn: 1440
       });
@@ -39,44 +39,6 @@ router.get('/todo', function (req, res) {
   'use strict';
 
   res.sendFile(path.join(__dirname + '/../views/todo.html'));
-});
-
-router.post('/fetch', function (req, res) {
-  'use strict';
-
-  var token = req.body.token,
-    user_id,
-    res_obj = {
-      success: false,
-      msg: ''
-    };
-
-  if (token) {
-    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
-      if (err) {
-        res.send(res_obj);
-      } else {
-        // if everything is good, save to request for use in other routes
-        res_obj.success = true;
-        user_id = decoded.user_id;
-        user.searchtodo(user_id, function (response, error) {
-          if (!error) {
-            res_obj.data = response;
-            res.send(res_obj);
-          }
-        });
-      }
-    });
-  } else {
-    /* if there is no token return an error*/
-    res.send(res_obj);
-  }
-});
-
-router.get('/insert-todo', function (req, res) {
-  'use strict';
-
-  res.sendFile(path.join(__dirname + '/../views/add_todo.html'));
 });
 
 router.post('/add-todo', function (req, res) {
@@ -95,8 +57,8 @@ router.post('/add-todo', function (req, res) {
         res.send(res_obj);
       } else {
         res_obj.success = true;
-        req_data.user_id = decoded.user_id;
-        user.addtodo(req_data, function (response, error) {
+        req_data.user_id = decoded.userid;
+        data.addtodo(req_data, function (response, error) {
           if (!error) {
             res_obj.data = response;
             res.send(res_obj);
@@ -105,6 +67,41 @@ router.post('/add-todo', function (req, res) {
       }
     });
   } else {
+    res.send(res_obj);
+  }
+});
+
+router.post('/fetch', function (req, res) {
+  'use strict';
+
+  var token = req.body.token,
+    res_obj = {
+      success: false,
+      msg: ''
+    },
+    userid;
+
+  if (token) {
+    jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+      if (err) {
+        res.send(res_obj);
+      } else {
+        // if everything is good, save to request for use in other routes
+        res_obj.success = true;
+        userid = decoded.userid;
+        data.searchtodo({userid: userid,
+          date: req.body.date},
+          function (response, error) {
+          if (!error) {
+            res_obj.data = response;
+            res.send(res_obj);
+          }
+        });
+      }
+    });
+  } else {
+    /* if there is no token
+    return an error*/
     res.send(res_obj);
   }
 });
