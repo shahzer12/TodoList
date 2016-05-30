@@ -12,7 +12,7 @@ $(document).ready(function () {
           $('#accordion').html('<div class="alert alert-danger"' +
             'role="alert"> <h3 id="text">Todo' +
             ' for this date is not available. Please click add button' +
-            'to create yout todo</h3></div>');
+            ' to create yout todo</h3></div>');
         }
         for (j = 0; j < todo_obj.length; j++) {
           append_collapse_html = '<div class="panel panel-default">' +

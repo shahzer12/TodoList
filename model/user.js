@@ -61,10 +61,10 @@ exports.searchtodo = function (data, cb) {
     user_id: data.userid,
     date: data.date
   })
- .then(function (ret) {
-     cb(ret);
-   })
-   .catch(function (error) {
-     cb(error);
-   });
+  .then(function (ret) {
+    cb(ret);
+  })
+  .catch(function (error) {
+    cb(error);
+  });
 };
