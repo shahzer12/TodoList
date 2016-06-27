@@ -11,14 +11,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
     <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-    <script src='http://underscorejs.org/underscore-min.js'></script>
+    <script src='http://underscorejs.org/underscore-min.js'></script> 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js">
     </script>
     <script type='text/javascript' src='js/todo.js'></script>
     <script type="text/javascript" src="js/add_todo.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+     
   </head>
 
+
   <body>
+
     <nav class='navbar navbar-default'>
       <div id ='heading' class='container-fluid'>
         <div class='navbar-header'>
@@ -33,6 +37,17 @@
     <div class='body'></div>
     <p id='date'>Date : <input type='text' id='datepicker'></p>
     <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
+
+    <input id="address" class="form-control input-lg" type="text" placeholder=".input-lg" >
+   
+    <div id= "map"></div>
+
+   <!-- <script src="js/todo.js"></script> -->
+    
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQIMn_sni2FITX73OA-WFloU1ipW_bim8&callback=initMap">
+      </script>
+    
     <div class="modal fade" id="add-todo-modal" role="dialog">
       <div class="modal-dialog">
       <!-- Modal content-->
@@ -57,7 +72,10 @@
               </div>
               <div class="form-group">
                 <label for="address" class="col">ADDRESS :</label>
-                <input type="text" name="address" id ="address" class="form-control" placeholder="Enter your location" >
+                <input type="text" name="address" id ="address_modal" class="form-control" placeholder="Enter your location" >
+                <a href = "#">
+                  <span id= 'marker' class = 'glyphicon glyphicon-map-marker' > </span>
+                </a>
               </div>
               <input id='submit' class="btn btn-primary" id='submit' type="submit" value="Submit">
             </form>
