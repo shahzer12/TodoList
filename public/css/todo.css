@@ -69,4 +69,34 @@
     color:#c8f0c8;
    }
 
+   #locate {width: 125px;
+    height: 35px;
+    border: 1px solid #A56161;
+    cursor: pointer;
+    border-radius: 2px;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top: 500px;
+    margin-left: 425px;
+   }
+
+   #map {
+        height: 75%;
+      }
+
+       html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+  #marker{
+    margin-left: 77%;
+    position: relative;
+    top: -22px;
+  }
+
+
 </style>
