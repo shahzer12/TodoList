@@ -2,12 +2,13 @@ var knex = require('knex')({
   client: 'mysql',
   connection: {
   host: '127.0.0.1',
-  user: 'root',
-  password: 'root',
-  database: 'todo'}
+  user: 'hash',
+  password: 'hashcube',
+  database: 'todo'
+  }
 });
 
-exports.adduser = function (data, cb) {
+exports.addUser = function (data, cb) {
   'use strict';
 
   knex('user').insert({email: data.email,
@@ -28,14 +29,16 @@ exports.select = function (data, cb) {
     password: data.password
     })
   .then(function (ret) {
+    console.log(ret);
     cb(ret);
   })
   .catch(function (error) {
+    console.log(error);
     cb(error);
   });
 };
 
-exports.addtodo = function (data, cb) {
+exports.addTodo = function (data, cb) {
   'use strict';
 
   knex('todo').insert({
@@ -54,7 +57,7 @@ exports.addtodo = function (data, cb) {
   });
 };
 
-exports.searchtodo = function (data, cb) {
+exports.searchTodo = function (data, cb) {
   'use strict';
 
   knex.select().table('todo').where({

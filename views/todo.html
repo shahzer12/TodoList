@@ -16,7 +16,6 @@
     </script>
     <script type='text/javascript' src='js/todo.js'></script>
     <script type="text/javascript" src="js/add_todo.js"></script>
-    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
      
   </head>
 
@@ -38,16 +37,14 @@
     <p id='date'>Date : <input type='text' id='datepicker'></p>
     <button id = 'search' type='button' class='btn btn-primary' data-toggle="modal" data-target="#add-todo-modal">ADD</button>
 
-    <input id="address" class="form-control input-lg" type="text" placeholder=".input-lg" >
-   
-    <div id= "map"></div>
+  <div id = "map" style="display: none"></div>
 
    <!-- <script src="js/todo.js"></script> -->
-    
+
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQIMn_sni2FITX73OA-WFloU1ipW_bim8&callback=initMap">
       </script>
-    
+
     <div class="modal fade" id="add-todo-modal" role="dialog">
       <div class="modal-dialog">
       <!-- Modal content-->

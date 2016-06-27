@@ -1,8 +1,9 @@
 var express = require('express'),
   app = express(),
+  crypto = require('crypto'),
   router = express.Router(),
   path = require('path'),
-  data = require('../model/user'),
+  user = require('../model/user'),
   jwt = require('jsonwebtoken');
 
 app.set('superSecret', 'abcdef');
@@ -16,7 +17,7 @@ router.post('/login', function (req, res) {
     },
     token;
 
-  data.select(obj, function (response, err) {
+  user.select(obj, function (response, err) {
     if (err) {
       res_obj.msg = 'something error occured';
       res.send(res_obj);
@@ -58,7 +59,7 @@ router.post('/add-todo', function (req, res) {
       } else {
         res_obj.success = true;
         req_data.user_id = decoded.userid;
-        data.addtodo(req_data, function (response, error) {
+        user.addTodo(req_data, function (response, error) {
           if (!error) {
             res_obj.data = response;
             res.send(res_obj);
@@ -89,7 +90,7 @@ router.post('/fetch', function (req, res) {
         // if everything is good, save to request for use in other routes
         res_obj.success = true;
         userid = decoded.userid;
-        data.searchtodo({userid: userid,
+        user.searchTodo({userid: userid,
           date: req.body.date},
           function (response, error) {
           if (!error) {

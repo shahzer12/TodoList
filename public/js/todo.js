@@ -122,7 +122,6 @@ $(document).ready(function () {
                 '<p>  Time ' + todo_obj[j].time + '</p>' +
                 '<p>  Location ' + todo_obj[j].location + '</p>' +
                 '<p>  Event ' + todo_obj[j].event + '</p>' +
-                '<p>  User_id ' + todo_obj[j].user_id + '</p>' +
                '</div>' +
             '</div>' +
             '</div>';
