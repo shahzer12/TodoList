@@ -2,7 +2,6 @@ var getInfo, startApp, attachSignin, google_user, dbCheck, login,
   loginSuccessSocial = function (response) {
     'use strict';
 
-    console.log("hi");
     if (!response.success) {
       $('#alert').html(response.msg).show();
     } else {
