@@ -2,11 +2,14 @@ var knex = require('knex')({
   client: 'mysql',
   connection: {
   host: '127.0.0.1',
-  user: 'hash',
-  password: 'hashcube',
+  user: 'root',
+  password: 'root',
   database: 'todo'
-  }
-});
+},
+
+
+}),
+ _ = require('lodash');
 
 exports.addUser = function (data, cb) {
   'use strict';
@@ -68,6 +71,92 @@ exports.searchTodo = function (data, cb) {
     cb(ret);
   })
   .catch(function (error) {
+    cb(error);
+  });
+};
+ var res = {};
+
+exports.checkRecord = function (data, done) {
+  'use strict';
+
+
+  knex.select().from('user')
+  .where({
+    email: data.email
+  })
+  .then(function (resp) {
+    resp = resp[0];
+
+    if (_.isEmpty(resp)) {
+      res.success = true;
+    } else {
+      res.msg = 'email id exists';
+      res.success = false;
+    }
+    done(res);
+  })
+  .catch(function (error) {
+    res.success = false;
+    res.msg = 'db-error';
+    res.data = error;
+    done(res);
+  });
+};
+
+exports.adduserSocial = function (data, done) {
+  'use strict';
+
+  knex('user').insert(data)
+  .then(function (data) {
+    res.success = true;
+    res.msg = 'register-success';
+    res.data = data;
+    done(res);
+  })
+  .catch(function (error) {
+    res.success = false;
+    res.msg = 'db-error';
+    res.data = error;
+    done(res);
+  });
+};
+
+exports.verifySocial = function (data, done) {
+  'use strict';
+
+  knex.select('password', 'id').from('user')
+  .where({
+    email: data.email
+  })
+  .then(function (resp) {
+    resp = resp[0];
+    res.success = true;
+    res.msg = 'verify-success';
+    res.data = {
+      id: resp.id,
+      type: enum_map.user.type[resp.type]
+    };
+    done(res);
+  })
+  .catch(function (error) {
+    res.success = false;
+    res.msg = 'db-error';
+    res.data = error;
+    done(res);
+  });
+};
+
+exports.selectSocial = function (data, cb) {
+  'use strict';
+
+  knex.select().table('user').where({email: data.email
+    })
+  .then(function (ret) {
+    console.log(ret);
+    cb(ret);
+  })
+  .catch(function (error) {
+    console.log(error);
     cb(error);
   });
 };

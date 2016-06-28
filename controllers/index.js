@@ -107,4 +107,63 @@ router.post('/fetch', function (req, res) {
   }
 });
 
+router.post('/user/dbcheck_social', function (req, res) {
+  'use strict';
+
+  user.checkRecord(req.body, function (resp) {
+    res.send(resp);
+  });
+});
+
+router.post('/user/adduser_social', function (req, res) {
+  'use strict';
+
+  var obj = {
+    email: req.body.email
+  };
+
+  user.adduserSocial(obj, function (resp) {
+    if (resp.success) {
+      resp.msg = 'table-success';
+      // resp.msg = util.getTranslation(resp.msg);
+    } else {
+      // resp.msg = util.getTranslation(resp.msg);
+    }
+    res.send(resp);
+  });
+});
+
+router.post('/user/login_social', function (req, res) {
+  'use strict';
+
+  var data = req.body,
+    obj = {
+      email: data.email
+    };
+
+ var obj = req.body,
+    res_obj = {
+      success: false,
+      msg: ''
+    },
+    token;
+
+  user.selectSocial(obj, function (response, err) {
+    if (err) {
+      res_obj.msg = 'something error occured';
+      res.send(res_obj);
+    } else if (response.length === 0) {
+      res_obj.msg = 'user name doesnt exist';
+      res.send(res_obj);
+    } else {
+      res_obj.success = true;
+      token = jwt.sign({userid: response[0].id}, app.get('superSecret'),
+      {
+        expiresIn: 1440
+      });
+      res_obj.token = token;
+      res.send(res_obj);
+    }
+  });
+});
 module.exports = router;
