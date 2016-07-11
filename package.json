@@ -1,0 +1,27 @@
+{
+  "name": "todo_training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://piyushh1@bitbucket.org/abhishek_tripathi/todo_training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/abhishek_tripathi/todo_training#readme",
+  "dependencies": {
+    "ansi-regex": "^2.0.0",
+    "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^7.0.1",
+    "knex": "^0.11.5",
+    "lodash": "^4.13.1",
+    "mysql": "^2.10.2"
+  }
+}
